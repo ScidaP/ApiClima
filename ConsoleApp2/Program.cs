@@ -14,7 +14,7 @@ namespace ConsoleApp2 {
             ConsumirAPI();
         }
 
-        static void ConsumirAPI() {
+        private static void ConsumirAPI() {
             var url = $"https://ws.smn.gob.ar/map_items/weather";
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
@@ -28,6 +28,10 @@ namespace ConsoleApp2 {
                             using (StreamReader objReader = new StreamReader(strReader)) {
                                 string responseBody = objReader.ReadToEnd();
                                 List<Provincias> ListProvincias = JsonSerializer.Deserialize<List<Provincias>>(responseBody);
+                                Console.WriteLine("Hola");
+                                foreach (Provincias Prov in ListProvincias) { // No imprime nada xd, nisiquiera se imprime el "Hola" de arriba
+                                    Console.WriteLine("Prov nombre: " + Prov.Name);
+                                }
                             }
                         }
                     }
